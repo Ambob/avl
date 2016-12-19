@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>页面跳转</title>
+</head>
+<body>
+    <h1>请稍后，页面跳转中..........</h1>
+    <p></p>
+</body>
+</html>
+<script type="text/javascript">
+window.onload = function(){
+    var company=GetQueryString("company");
+    if(isWeiXin()){
+        window.open('./index_weixin.php?company='+company,'_self');
+    }else{
+        window.open('./login.html?company='+company,'_self');
+    }
+}
+function isWeiXin(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function GetQueryString(name){
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+</script>
